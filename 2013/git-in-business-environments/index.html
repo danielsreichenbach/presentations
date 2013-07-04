@@ -1,101 +1,195 @@
 <!doctype html>
 <html lang="en">
 
-	<head>
-		<meta charset="utf-8">
+    <head>
+        <meta charset="utf-8">
 
-		<title>git going - version control with git in a commercial environment</title>
+        <title>git going - version control with git in a commercial environment</title>
 
-		<meta name="description" content="A framework for easily creating beautiful presentations using HTML">
-		<meta name="author" content="Hakim El Hattab">
+        <meta name="description" content="A framework for easily creating beautiful presentations using HTML">
+        <meta name="author" content="Hakim El Hattab">
 
-		<meta name="apple-mobile-web-app-capable" content="yes" />
-		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
 
-		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-		<link rel="stylesheet" href="css/reveal.min.css">
-		<link rel="stylesheet" href="css/theme/sky.css" id="theme">
+        <link rel="stylesheet" href="css/reveal.min.css">
+        <link rel="stylesheet" href="css/theme/sky.css" id="theme">
 
-		<!-- For syntax highlighting -->
-		<link rel="stylesheet" href="lib/css/tomorrow-night-eighties.css">
+        <!-- For syntax highlighting -->
+        <link rel="stylesheet" href="lib/css/tomorrow-night-eighties.css">
 
-		<!-- If the query includes 'print-pdf', use the PDF print sheet -->
-		<script>
-			document.write( '<link rel="stylesheet" href="css/print/' + ( window.location.search.match( /print-pdf/gi ) ? 'pdf' : 'paper' ) + '.css" type="text/css" media="print">' );
-		</script>
+        <!-- If the query includes 'print-pdf', use the PDF print sheet -->
+        <script>
+            document.write( '<link rel="stylesheet" href="css/print/' + ( window.location.search.match( /print-pdf/gi ) ? 'pdf' : 'paper' ) + '.css" type="text/css" media="print">' );
+        </script>
 
-		<!--[if lt IE 9]>
-		<script src="lib/js/html5shiv.js"></script>
-		<![endif]-->
-	</head>
+        <!--[if lt IE 9]>
+        <script src="lib/js/html5shiv.js"></script>
+        <![endif]-->
+    </head>
 
-	<body>
+    <body>
 
-		<div class="reveal">
+        <div class="reveal">
 
-			<!-- Any section element inside of this container is displayed as a slide -->
-			<div class="slides">
+            <!-- Any section element inside of this container is displayed as a slide -->
+            <div class="slides">
 
-				<section>
-					<h1>git going</h1>
-					<h3>Version control with git in a commercial environment</h3>
-					<p>
-						<small>Created by <a href="http://marenkay.com">Daniel S. Reichenbach</a> / <a href="http://twitter.com/marenkay">@marenkay</a></small>
-					</p>
-				</section>
+                <section>
+                    <h1>git going</h1>
+                    <h3>Version control with git in a commercial environment</h3>
+                    <p>
+                        <small>Created by <a href="http://marenkay.com">Daniel S. Reichenbach</a> / <a href="http://twitter.com/marenkay">@marenkay</a></small>
+                    </p>
+                </section>
 
-				<section>
-					<h2>Heads Up</h2>
-					<p>
-						First there was RCS, then there was CVS. Subversion succeeded CVS, and now git is
-						there to become the new king in town. But will it blend in?
-					</p>
+                <section>
+                    <h2>Heads Up</h2>
+                    <p>
+                        First there was RCS, then there was CVS. Subversion succeeded CVS, and now git is
+                        there to become the new king in town. But will it blend in?
+                    </p>
 
-					<aside class="notes">
-						Oh hey, these are some notes. They'll be hidden in your presentation, but you can see them if you open the speaker notes window (hit 's' on your keyboard).
-					</aside>
-				</section>
+                    <aside class="notes">
+                        Subversion is everywhere, it is mainstream, and once was revolutionary just as git
+                        is considered to be the new thing, too. Even version control evolves, and grows
+                        into mainstream.
+                    </aside>
+                </section>
 
-				<section>
-					<h1>THE END</h1>
-					<h3>BY Daniel S. Reichenbach / marenkay.com</h3>
-				</section>
+                <section>
+                    <section>
+                        <h2>Subversion is</h2>
+                        <p>centralized version control</p>
+                        <p class="fragment">one server</p>
+                        <p class="fragment">many clients</p>
+                        <p class="fragment">established</p>
 
-			</div>
+                        <aside class="notes">
+                            This slide has fragments which are also stepped through in the notes window.
+                        </aside>
+                    </section>
+                    <section>
+                        <h2>Subversion has</h2>
+                        <p>A whole universe of 3rd party tools, like:</p>
+                        <p class="fragment">TortoiseSVN</p>
+                        <p class="fragment">Trac / Redmine</p>
+                        <p class="fragment">IDE support</p>
+                    </section>
+                    <section>
+                        <h2>Subversion has</h2>
+                        <p class="fragment">a supporting company</p>
+                        <p class="fragment">established workflows</p>
+                        <p class="fragment">a large user community</p>
+                    </section>
+                </section>
 
-		</div>
+                <section>
+                    <section>
+                        <h2>Subversion is missing out on</h2>
 
-		<script src="lib/js/head.min.js"></script>
-		<script src="js/reveal.min.js"></script>
+                        <p class="fragment">real branches</p>
+                        <ol>
+                            <li class="fragment">no relation to the trunk</li>
+                            <li class="fragment">merging looses the branch history</li>
+                            <li class="fragment">branches are just copies</li>
+                        </ol>
+                    </section>
 
-		<script>
+                    <section>
+                        <h2>Subversion is missing out on</h2>
 
-			// Full list of configuration options available here:
-			// https://github.com/hakimel/reveal.js#configuration
-			Reveal.initialize({
-				controls: true,
-				progress: true,
-				history: true,
-				center: true,
+                        <p class="fragment">tagging release</p>
+                        <ol>
+                            <li class="fragment">tags are no fix points</li>
+                            <li class="fragment">they can be modified</li>
+                        </ol>
+                    </section>
 
-				theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
-				transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/zoom/linear/fade/none
+                    <section>
+                        <h2>Subversion is missing out on</h2>
 
-				// Optional libraries used to extend on reveal.js
-				dependencies: [
-					{ src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
-					{ src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
-					{ src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
-					{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
-					{ src: 'plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
-					{ src: 'plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
-					// { src: 'plugin/search/search.js', async: true, condition: function() { return !!document.body.classList; } }
-					// { src: 'plugin/remotes/remotes.js', async: true, condition: function() { return !!document.body.classList; } }
-				]
-			});
+                        <p class="fragment">proper file operations</p>
+                        <ol>
+                            <li class="fragment">Bob moves a file</li>
+                            <li class="fragment">Alice changes old file</li>
+                            <li class="fragment">commit fails</li>
+                        </ol>
+                        <p class="fragment">merge conflicts are common</p>
+                    </section>
+                </section>
 
-		</script>
+                <section>
+                    <h2>Subversion is fun</h2>
 
-	</body>
+                    <p class="fragment">working offline is hard</p>
+                    <ol>
+                        <li class="fragment">history, diffs, etc. are unavailable</li>
+                        <li class="fragment">branching, tagging, commiting impossible</li>
+                    </ol>
+                    <p class="fragment">source trees are not pristine</p>
+                    <p class="fragment">developers are forced to live with it</p>
+                </section>
+
+                <section>
+                    <h2>Now what</h2>
+
+                    <blockquote cite="https://www.youtube.com/watch?v=4XpnKHJAok8">
+                        &ldquo;Subversion used to say CVS done right: with that slogan there is nowhere you can go.
+                        There is no way to do CVS right.&rdquo; &mdash; Linus Torvalds, Mai 2007
+                    </blockquote>
+                </section>
+
+                <section>
+                    <h2>This</h2>
+
+                    <blockquote>
+                        &ldquo;Git is the result of pains caused by version control. It is there to ease
+                        our pains.&rdquo; &mdash; Me :-)
+                    </blockquote>
+                </section>
+
+                <section>
+                    <h1>THE END</h1>
+                    <h3>BY Daniel S. Reichenbach / marenkay.com</h3>
+                </section>
+
+            </div>
+
+        </div>
+
+        <script src="lib/js/head.min.js"></script>
+        <script src="js/reveal.min.js"></script>
+
+        <script>
+
+            // Full list of configuration options available here:
+            // https://github.com/hakimel/reveal.js#configuration
+            Reveal.initialize({
+                controls: true,
+                progress: true,
+                history: true,
+                center: true,
+
+                theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+                transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/zoom/linear/fade/none
+
+                // Optional libraries used to extend on reveal.js
+                dependencies: [
+                    { src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+                    { src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+                    { src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+                    { src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+                    { src: 'plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+                    { src: 'plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
+                    // { src: 'plugin/search/search.js', async: true, condition: function() { return !!document.body.classList; } }
+                    // { src: 'plugin/remotes/remotes.js', async: true, condition: function() { return !!document.body.classList; } }
+                ]
+            });
+
+        </script>
+
+    </body>
 </html>
