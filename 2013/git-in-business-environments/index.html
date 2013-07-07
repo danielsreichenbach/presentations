@@ -261,6 +261,196 @@
                 </section>
 
                 <section>
+                    <h2>Git in der Praxis</h2>
+                    <p>Was Git für uns tun kann, sehen wir jetzt.</p>
+                </section>
+
+                <section>
+                    <h2>Git SVN</h2>
+                    <p>Initialisieren wir ein Subversion Repository mit Git:</p>
+                    <pre><code data-trim contenteditable>
+git svn init -s http://svn.mycompany.com/svn/projectname
+                    </code></pre>
+                    <p>Dies erstellt ein <em>leeres</em> Git Repository, welches wir befüllen mit</p>
+                    <pre><code data-trim contenteditable>
+git svn fetch
+                    </code></pre>
+                    <p>Nun ist das gesamte Repository lokal vorhanden.</p>
+                </section>
+
+                <section>
+                    <h2>Git SVN</h2>
+                    <p>Jeder Branch, jeder Tag ist lokal vorhanden:</p>
+                    <pre><code data-trim contenteditable>
+git branch -a
+                    </code></pre>
+                    <p>Falls das geklonte Repository eine umfangreiche Historie hat, können wir
+                        es packen:</p>
+                    <pre><code data-trim contenteditable>
+git repack -d
+                    </code></pre>
+                    <p>Im Anschluss daran ist die Historie komprimiert.</p>
+                </section>
+
+                <section>
+                    <h2>Git SVN</h2>
+                    <p>Arbeiten an einem neuen Feature:</p>
+                    <pre><code data-trim contenteditable>
+git checkout -b neues_feature
+git add path/to/new_file
+git add path/to/edited_file
+git add another/edited/file
+git commit -m "commit message"
+                    </code></pre>
+                    <p>Fertig!</p>
+                </section>
+
+                <section>
+                    <h2>Git SVN</h2>
+                    <p>Das Feature in Subversion schieben:</p>
+                    <pre><code data-trim contenteditable>
+git checkout master
+git merge neues_feature
+git svn rebase
+git svn dcommit
+                    </code></pre>
+                    <p>Im Anschluss daran das Feature in Subversion.</p>
+                </section>
+
+                <section>
+                    <h2>Git Stash</h2>
+                    <p>Git bringt eine lokale Zwischenablage mit:</p>
+                    <pre><code data-trim contenteditable>
+git add .
+git stash save "probieren wir mal was"
+git stash list
+stash@{0}: WIP on feature1: b50788b... probieren wir mal was
+git diff stash@{0}
+diff --git a/TODO b/TODO
+index b0ecaeb..4ca398c 100644
+--- a/TODO
++++ b/TODO
+@@ -1,4 +1,3 @@
+ [ ] Easier configuration of Maruka and blahtex directories [mdreid]
+ [ ] Accurate "related posts" calculator
+-[ ] Autobuild
+-[ ] Add more awesome.
++[ ] Autobuild
+\ No newline at end of file
+                    </code></pre>
+                    <p>Die Zwischenablage ist privat.</p>
+                </section>
+
+                <section>
+                    <h2>Git Stash</h2>
+                    <pre><code data-trim contenteditable>
+git stash apply stash@{1}
+git stash pop
+git stash drop stash@{2}
+git stash clear
+                    </code></pre>
+                </section>
+
+                <section>
+                    <h2>Git Revert or not?</h2>
+                    <pre><code data-trim contenteditable>
+git checkout path/to/file
+git checkout -f
+git reset --HARD
+git revert commit-id
+                    </code></pre>
+                </section>
+
+                <section>
+                    <h2>Git aufräumen</h2>
+                    <pre><code data-trim contenteditable>
+git clean -n -d
+git clean -n -f
+git clean -n -x
+                    </code></pre>
+                </section>
+
+                <section>
+                    <h2>Git </h2>
+                    <pre><code data-trim contenteditable>
+git
+                    </code></pre>
+                </section>
+
+                <section>
+                    <h2>Git Status</h2>
+                    <pre><code data-trim contenteditable>
+git status
+git reset -- path/file/name
+                    </code></pre>
+                </section>
+
+                <section>
+                    <h2>Git Remotes</h2>
+                    <pre><code data-trim contenteditable>
+git remote
+git remode add origin git@github.com/danielsreichenbach/presentations.git
+git remote rm origin
+git remote show origin
+                    </code></pre>
+                </section>
+
+                <section>
+                    <h2>Git Branches</h2>
+                    <p>Branches können lokal und/oder Remote sein.</p>
+                    <pre><code data-trim contenteditable>
+git branch -r
+git branch -a
+git branch --track feature1 origin/master
+git branch --no-track feature2 origin/master
+                    </code></pre>
+                </section>
+
+                <section>
+                    <h2>Git wer was es denn?</h2>
+                    <pre><code data-trim contenteditable>
+git blame path/to/file
+                    </code></pre>
+                </section>
+
+                <section>
+                    <h2>Git Tags</h2>
+                    <pre><code data-trim contenteditable>
+git tag -a v1.0.0 -m "Creating the first official version."
+git show v1.0.0
+git describe --tags
+git push --tags
+                    </code></pre>
+                </section>
+
+                <section>
+                    <h2>Git und Remote Branches</h2>
+                    <pre><code data-trim contenteditable>
+git push origin newfeature
+git push origin :newfeature
+                    </code></pre>
+                </section>
+
+                <section>
+                    <h2>Git Branches und Merges</h2>
+                    <pre><code data-trim contenteditable>
+git checkout -b fixes
+vim lib/daniel/mpq.rb
+git commit -am "my message"
+git checkout master
+git merge fixes
+                    </code></pre>
+                </section>
+
+                <section>
+                    <h2>Git Pushing and Pulling</h2>
+                    <pre><code data-trim contenteditable>
+git push origin master
+git pull origin master
+                    </code></pre>
+                </section>
+
+                <section>
                     <h1>FIN</h1>
                     <h3>VON Daniel S. Reichenbach / marenkay.com</h3>
                 </section>
