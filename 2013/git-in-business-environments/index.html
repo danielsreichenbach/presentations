@@ -337,117 +337,151 @@ index b0ecaeb..4ca398c 100644
 -[ ] Add more awesome.
 +[ ] Autobuild
 \ No newline at end of file
-                    </code></pre>
-                    <p>Die Zwischenablage ist privat.</p>
-                </section>
+                        </code></pre>
+                        <p>Die Zwischenablage ist privat.</p>
+                    </section>
 
-                <section>
-                    <h2>Git Stash</h2>
-                    <pre><code data-trim contenteditable>
+                    <section>
+                        <h2>Git Stash</h2>
+                        <pre><code data-trim contenteditable>
 git stash apply stash@{1}
 git stash pop
 git stash drop stash@{2}
 git stash clear
-                    </code></pre>
-                </section>
+                        </code></pre>
+                    </section>
 
-                <section>
-                    <h2>Git Revert or not?</h2>
-                    <pre><code data-trim contenteditable>
+                    <section>
+                        <h2>Git Revert or not?</h2>
+                        <pre><code data-trim contenteditable>
 git checkout path/to/file
 git checkout -f
 git reset --HARD
 git revert commit-id
-                    </code></pre>
-                </section>
+                        </code></pre>
+                    </section>
 
-                <section>
-                    <h2>Git aufräumen</h2>
-                    <pre><code data-trim contenteditable>
+                    <section>
+                        <h2>Git aufräumen</h2>
+                        <pre><code data-trim contenteditable>
 git clean -n -d
 git clean -n -f
 git clean -n -x
-                    </code></pre>
-                </section>
+                        </code></pre>
+                    </section>
 
-                <section>
-                    <h2>Git </h2>
-                    <pre><code data-trim contenteditable>
-git
-                    </code></pre>
-                </section>
-
-                <section>
-                    <h2>Git Status</h2>
-                    <pre><code data-trim contenteditable>
+                    <section>
+                        <h2>Git Status</h2>
+                        <pre><code data-trim contenteditable>
 git status
 git reset -- path/file/name
-                    </code></pre>
-                </section>
+                        </code></pre>
+                    </section>
 
-                <section>
-                    <h2>Git Remotes</h2>
-                    <pre><code data-trim contenteditable>
-git remote
-git remode add origin git@github.com/danielsreichenbach/presentations.git
-git remote rm origin
-git remote show origin
-                    </code></pre>
-                </section>
-
-                <section>
-                    <h2>Git Branches</h2>
-                    <p>Branches können lokal und/oder Remote sein.</p>
-                    <pre><code data-trim contenteditable>
-git branch -r
-git branch -a
-git branch --track feature1 origin/master
-git branch --no-track feature2 origin/master
-                    </code></pre>
-                </section>
-
-                <section>
-                    <h2>Git wer was es denn?</h2>
-                    <pre><code data-trim contenteditable>
+                    <section>
+                        <h2>Git wer was es denn?</h2>
+                        <pre><code data-trim contenteditable>
 git blame path/to/file
-                    </code></pre>
-                </section>
+                        </code></pre>
+                    </section>
 
-                <section>
-                    <h2>Git Tags</h2>
-                    <pre><code data-trim contenteditable>
+                    <section>
+                        <h2>Git Tags</h2>
+                        <pre><code data-trim contenteditable>
 git tag -a v1.0.0 -m "Creating the first official version."
 git show v1.0.0
 git describe --tags
 git push --tags
-                    </code></pre>
-                </section>
+                        </code></pre>
+                    </section>
 
-                <section>
-                    <h2>Git und Remote Branches</h2>
-                    <pre><code data-trim contenteditable>
+                    <section>
+                        <section>
+                            <h2>Git Remotes</h2>
+                            <pre><code data-trim contenteditable>
+git remote
+git remode add origin git@github.com/danielsreichenbach/presentations.git
+git remote rm origin
+git remote show origin
+                            </code></pre>
+                        </section>
+
+                        <section>
+                            <h2>Git Pushing and Pulling</h2>
+                            <pre><code data-trim contenteditable>
+git push origin master
+git pull origin master
 git push origin newfeature
 git push origin :newfeature
-                    </code></pre>
-                </section>
+                            </code></pre>
+                        </section>
 
-                <section>
-                    <h2>Git Branches und Merges</h2>
-                    <pre><code data-trim contenteditable>
+                        <section>
+                            <h2>Git Branches</h2>
+                            <p>Branches können lokal und/oder Remote sein.</p>
+                            <pre><code data-trim contenteditable>
+git branch -r
+git branch -a
+git branch --track feature1 origin/master
+git branch --no-track feature2 origin/master
+                            </code></pre>
+                        </section>
+
+                        <section>
+                            <h2>Git Branches und Merges</h2>
+                            <pre><code data-trim contenteditable>
 git checkout -b fixes
 vim lib/daniel/mpq.rb
 git commit -am "my message"
 git checkout master
 git merge fixes
-                    </code></pre>
+                        </code></pre>
+                    </section>
+
+                    <section>
+                        <h2>Git Branches und Rebase</h2>
+                        <pre><code data-trim contenteditable>
+git checkout -b fixes
+vim lib/daniel/mpq.rb
+git commit -am "my message"
+git checkout master
+git rebase fixes
+                        </code></pre>
+                    </section>
                 </section>
 
                 <section>
-                    <h2>Git Pushing and Pulling</h2>
-                    <pre><code data-trim contenteditable>
-git push origin master
-git pull origin master
-                    </code></pre>
+                    <section>
+                        <h2>Git: woher kommen Remotes?</h2>
+                        <ol>
+                            <li>Dateisystem</li>
+                            <li>Server (ssh / http(s)</li>
+                        </ol>
+                    </section>
+
+                    <section>
+                        <h2>Git: wozu Remotes?</h2>
+                        <p>Remotes ermöglichen erst die Zusammenarbeit im Team.</p>
+                        <p>Mit Remotes legen wir Workflows fest und kontrollieren Zugang und Regeln.</p>
+                    </section>
+
+                    <section>
+                        <h2>Git: öffentliche Remotes</h2>
+                        <ol>
+                            <li><a href="http://bitbucket.org/">BitBucket.org</a></li>
+                            <li><a href="http://github.com/">github.com</a></li>
+                        </ol>
+                    </section>
+
+                    <section>
+                        <h2>Git: private Remotes</h2>
+                            <li><a href="https://enterprise.github.com/">enterprise.github.com</a></li>
+                            <li><a href="http://www.atlassian.com/software/stash/">atlassian.com/software/stash</a></li>
+                            <li><a href="git://eagain.net/gitosis.git">git://eagain.net/gitosis.git</a></li>
+                            <li><a href="http://gitolite.com/gitolite/">gitolite.com/gitolite/</a></li>
+                            <li><a href="http://gitorious.org/">gitorious.org</a></li>
+                            <li><a href="http://gitlab.org/">gitlab.org</a></li>
+                    </section>
                 </section>
 
                 <section>
