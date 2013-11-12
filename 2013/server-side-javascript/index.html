@@ -71,120 +71,50 @@
 
                 <section data-markdown>
                     <script type="text/template">
-                        ## Was wir haben
+                        ## Javascript auf dem Server
 
-                        Seit 20 Jahren liefern wir Webseiten mit Apache, IIS, nginx,
-                        Unicorn, u.a. stateless aus.
+                        Javascript läuft in jedem Browser, jeder Web Entwickler kennt und
+                        nutzt es. Die Browser Hersteller liefern sich ein Wettrennen um
+                        die Leistung ihrer Engines.
+
+                        Zahlreiche Bibliotheken erlauben es uns, schnell und einfach
+                        Web Anwendungen zu bauen.
+
+                        Können wir diese Vielfalt und Performance nicht auch für Server
+                        Anwendungen einsetzen und schneller und besser entwickeln?
                     </script>
                 </section>
 
                 <section data-markdown>
                     <script type="text/template">
-                        ## Was wir haben
+                        ## Javascript auf dem Server
 
-                        1 - **n** Server stellen einen limitierten Pool an Threads und Verbindungen bereit
-                        und verbrauchen je nach Umgebung Speicher und Leistung.
+                        Ja! Wir können Javascript auf dem Server einsetzen, denn: aus
+                        den Javascript Engines der Browser wurden in den letzten drei
+                        Jahren eine Reihe von Umsetzungen vorgestellt:
+
+                        * Node.js: basiert auf der Chrome V8 Javascript Engine
+                        * SpiderMonkey: die Javascript Engine der Mozilla Browser
+                        * Rhino: eine Java basierte Javascript Engine, ebenfalls aus
+                          der Mozilla Familie
                     </script>
                 </section>
 
                 <section data-markdown>
                     <script type="text/template">
-                        ## Was wir haben
+                        ## Javascript auf dem Server
 
-                        Bei steigenden Anfragen erzeugen wir Wartezeiten oder müssen das **n** vergrößeren
-                        und Load Balancing u./o. Proxying betreiben.
+                        ![Szenario](./img/scenario.png)
                     </script>
                 </section>
 
                 <section data-markdown>
                     <script type="text/template">
-                        ## Ein Beispiel
+                        ## Was bringt uns das
 
-                        Ein Apache Thread verbraucht ~ 400-500MB Speicher und hält ~ 200 Verbindungen.
-
-                        Ein PHP Prozess verbraucht je nach Konfiguration Speicher und wird für
-                        jede Verbindung instanziert.
-
-                        Damit fahren wir mit 16GB RAM ca. 4000 Verbindungen.
-                    </script>
-                </section>
-
-                <section data-markdown>
-                    <script type="text/template">
-                        ## Ein Beispiel
-
-                        Aber: wohin mit Datenbanken und anderen Diensten?
-                    </script>
-                </section>
-
-                <section data-markdown>
-                    <script type="text/template">
-                        ## Geht das besser?
-
-                        Nehmen wir nginx statt Apache.
-
-                        nginx nutzt ein anderes Modell, ein Hauptprozess und Worker Prozesse, die bei Bedarf event-basiert erzeugt werden.
-                    </script>
-                </section>
-
-                <section data-markdown>
-                    <script type="text/template">
-                        ## Geht das besser?
-
-                        Bei 2.5MB Speicher kann nginx 10k gleichzeitige Anfragen verarbeiten. Für Apache
-                        hätten wir 64B verbaut.
-
-                        Merke: Prozesse sind günstiger als Threads! Was in Threads läuft, blockiert die
-                        weitere Verarbeitung und kommt mit einem Delta.
-                    </script>
-                </section>
-
-                <section data-markdown>
-                    <script type="text/template">
-                        ## Geht das besser?
-
-                        ![Memory usage and concurren requests](./img/nginx-apache-memory.png)
-                    </script>
-                </section>
-
-                <section data-markdown>
-                    <script type="text/template">
-                        ## Geht das besser?
-
-                        ![Requests per second](./img/nginx-apache-reqs-sec.png)
-                    </script>
-                </section>
-
-                <section data-markdown>
-                    <script type="text/template">
-                        ## Der Unterschied
-
-                        Die Apache Leistung sinkt mit steigender Anzahl von gleichzeitigen Verbindungen,
-                        ergo müssten wir skalieren mit zusätzlicher Hardware und mehr Verbindungen pro Thread.
-
-                        nginx läuft bei gleichbleibendem Speicherbedarf und verzichtet auf Overhead.
-                    </script>
-                </section>
-
-                <section data-markdown>
-                    <script type="text/template">
-                        ## Und PHP und Co?
-
-                        Laufen bei nginx als Prozess im Hintergrund, werden einmal instanziert und
-                        für jede Verbindung wieder verwertet.
-
-                        Daher: nicht pro Verbindung ein Prozess.
-                    </script>
-                </section>
-
-                <section data-markdown>
-                    <script type="text/template">
-                        ## Gibt es Alternativen?
-
-                        Was wir kennen ist stateless, was wir wollen ist Echtzeit, statefull.
-
-                        Aber halt... war da nicht noch Javascript und "sprechen" das nicht alle Entwickler?
-
+                        * Performance
+                        * Rapid Prototyping
+                        * eine Umgebung für das gesamte Projekt (?)
                     </script>
                 </section>
 
@@ -192,63 +122,182 @@
                     <script type="text/template">
                         ## Node.js
 
-                        V8 Javascript engine, die JS in nativen Bytecode übersetzt.
+                        Wir wählen Node.js aus, da wir hier eine Reihe von Vorteilen
+                        gegenüber anderen Engines sehen:
 
-                        Mit Heuristik, cache und co holt man hier Performance raus.
-
-                        Javascript wird in einer event-basierten engine bereitgestellt.
-                    </script>
-                </section>
-
-                <section data-markdown>
-                    <script type="text/template">
-                        ## Node.js
-
-                        Web sockets erlauben real time Verbindungen
-
-                        Non-blocking I/O. Rein, hop, und weg! I/O kostet Zeit.
-
-                        Von 3 CPU Zyklen im L1 Cache zu 41 Mio. Zyklen bei Disks bis zu 240 Mio.
-                        Zyklen über Netzwerk.
-                    </script>
-                </section>
-
-                <section data-markdown>
-                    <script type="text/template">
-                        ## Node.js
-
-                        Ein Thread läuft, fragt nach neuen Events und führt diese direkt aus.
-
-                        Klasse, weil ~ 1MB Speicher drauf geht.
-                    </script>
-                </section>
-
-                <section data-markdown>
-                    <script type="text/template">
-                        ## Ein Thread und IO?
-
-                        Wenn ein Event nach IO intensiver Arbeit verlangt, verlangsamt sich das abrufen
-                        neuer Events, den Events müssen abgeschlossen werden.
-                    </script>
-                </section>
-
-                <section data-markdown>
-                    <script type="text/template">
-                        ## Ein Thread und eine Exception
-
-                        Fehler in Skripten werden gefährlich.
-
-                        Warum? Jede Exception muss gefangen und behandelt werden.
-
-                        Sonst? Kann im schlimmsten Fall der Node.js Prozess sterben.
-
+                        * definierte API,
+                        * aktive Community,
+                        * eine Vielzahl von fertigen Bibliotheken für alle Anwendungsgebiete,
+                        * etablierte Lösung im Produktiveinsatz
                     </script>
                 </section>
 
                 <section>
                     <section data-markdown>
                         <script type="text/template">
-                            ## Beispiel
+                            ## Performance
+
+                                var http = require('http');
+
+                                http.createServer(function (request, response) {
+                                  response.writeHead(200, {'Content-Type': 'text/plain'});
+                                  response.end('Hello World\n');
+                                }).listen(8124);
+
+                                console.log('Server running at http://127.0.0.1:8124/');
+
+                        </script>
+                    </section>
+
+                    <section data-markdown>
+                        <script type="text/template">
+                            ## Performance
+
+                                > node example.js
+                                Server running at http://127.0.0.1:8124/
+                        </script>
+                    </section>
+
+                    <section data-markdown>
+                        <script type="text/template">
+                            ## Performance
+
+                            Wir führen 10000 Aufrufe mit jeweils 50 gleichzeitigen Aufrufen
+                            durch:
+
+                                ab -n 10000 -c 50 http://127.0.0.1:8124/
+                        </script>
+                    </section>
+
+                    <section data-markdown>
+                        <script type="text/template">
+                            ## Performance
+
+                                Concurrency Level:      50
+                                Time taken for tests:   0.620 seconds
+                                Complete requests:      10000
+                                Failed requests:        0
+                                Write errors:           0
+                                Total transferred:      1130000 bytes
+                                HTML transferred:       120000 bytes
+                                Requests per second:    16139.18 [#/sec] (mean)
+                                Time per request:       3.098 [ms] (mean)
+                                Time per request:       0.062 [ms] (mean, across all concurrent requests)
+                                Transfer rate:          1780.98 [Kbytes/sec] received
+                        </script>
+                    </section>
+
+                    <section data-markdown>
+                        <script type="text/template">
+                            ## Performance
+                            Mit der **zehnfachen** Anzahl an gleichzeitigen Aufrufen:
+
+                                Concurrency Level:      500
+                                Time taken for tests:   0.641 seconds
+                                Complete requests:      10000
+                                Failed requests:        0
+                                Write errors:           0
+                                Total transferred:      1130000 bytes
+                                HTML transferred:       120000 bytes
+                                Requests per second:    15611.10 [#/sec] (mean)
+                                Time per request:       32.028 [ms] (mean)
+                                Time per request:       0.064 [ms] (mean, across all concurrent requests)
+                                Transfer rate:          1722.71 [Kbytes/sec] received
+                        </script>
+                    </section>
+
+                    <section data-markdown>
+                        <script type="text/template">
+                            ## Performance im Vergleich
+
+                            Node.js als Dienst belegt gut 600MB Speicher um seine Arbeit zu erledigen.
+
+                            Apache als Server benötigt zur Verbeitung der gleichen Aufgabe 64GB Speicher,
+                            nginx kommt mit 2,5MB aus.
+                        </script>
+                    </section>
+
+                    <section data-markdown>
+                        <script type="text/template">
+                            ## Performance im Vergleich?
+
+                            ![Memory usage and concurren requests](./img/nginx-apache-memory.png)
+                        </script>
+                    </section>
+
+                    <section data-markdown>
+                        <script type="text/template">
+                            ## Performance im Vergleich?
+
+                            ![Requests per second](./img/nginx-apache-reqs-sec.png)
+                        </script>
+                    </section>
+                </section>
+
+                <section data-markdown>
+                    <script type="text/template">
+                        ## Node.js API
+
+                        Die NodeJS API ist noch nicht stabil!
+
+                        Eine Version 1.0 ist nicht vor 2014 in Sicht und war ursprünglich für
+                        Anfang 2013 angekündigt.
+                    </script>
+                </section>
+
+                <section data-markdown>
+                    <script type="text/template">
+                        ## Bibliotheken für Node.js
+
+                        Auch Node.js bringt einen Paketmanager mit, der uns erlaubt für viele
+                        Gebiete vorgefertige Bibliotheken nachzuinstallieren.
+
+                        Die sog. Node Packaged Modules werden von `npm` verwaltet. Eine Übersicht
+                        zu verfügbaren Modulen bietet [npmjs.org](npmjs.org).
+
+                        Aktuell stehen ca. 45.000 Bibliotheken zur Verfügung.
+                    </script>
+                </section>
+
+                <section data-markdown>
+                    <script type="text/template">
+                        ## Bibliotheken für Node.js
+
+                        Die Mehrzahl der über `npm` bereitgestellten Module verlangt nach einer
+                        bestimmten Version von Node.js. Meist ist man mit Version `0.8` oder Version
+                        `0.10` gut bedient.
+
+                    </script>
+                </section>
+
+                <section data-markdown>
+                    <script type="text/template">
+                        ## Bibliotheken für Node.js
+
+                        Daher gilt bei allen Modulen: auf Kompatibilität mit Node.js achten!
+
+                        Bei Node.js Updates kann es gerade bei weniger bekannten Modulen vorkommen,
+                        dass diese nicht mehr angepasst werden.
+                    </script>
+                </section>
+
+                <section>
+                    <section data-markdown>
+                        <script type="text/template">
+                            ## Entwicklung mit Node.js
+
+                            Da bei Node.js nur ein Prozess läuft, sind nicht behandelte Fehler in der
+                            Anwendung kritisch, da der Prozess dann beendet wird, die Anwendung "stirbt".
+
+                            Daher: jede Exception muss behandelt werden.
+                        </script>
+                    </section>
+
+                    <section data-markdown>
+                        <script type="text/template">
+                            ## Entwicklung mit Node.js
+
+                            Beispiel:
 
                                 var fs = require('fs');
 
@@ -262,8 +311,12 @@
 
                     <section data-markdown>
                         <script type="text/template">
-                            ## Ergebnis
+                            ## Entwicklung mit Node.js
 
+                            Ergebnis:
+
+                                if (err) throw err;
+                                                 ^
                                 Error: ENOENT, open 'somefile.txt'
 
                         </script>
@@ -271,7 +324,7 @@
 
                     <section data-markdown>
                         <script type="text/template">
-                            ## Besser
+                            ## Entwicklung mit Node.js
 
                                 var domain = require('domain');
                                 var d = domain.create();
@@ -293,10 +346,10 @@
 
                     <section data-markdown>
                         <script type="text/template">
-                            ## Die Lösung?
+                            ## Entwicklung mit Node.js
 
-                            In jedem Fall gilt: Crashes sollte man absichtlich provozieren für jedes
-                            erdenkliche Problem und abfangen.
+                            In jedem Fall gilt: Crashes sollte man absichtlich für jedes erdenkliche
+                            Problem provozieren und abfangen.
 
                             Im schlimmsten Fall gilt: Node.js überwachen und ggf. neu starten.
                         </script>
@@ -304,7 +357,7 @@
 
                     <section data-markdown>
                         <script type="text/template">
-                            ## Testen, testen, testen
+                            ## Entwicklung mit Node.js
 
                             Was hilft? Unit Tests!
 
@@ -316,57 +369,13 @@
 
                 <section data-markdown>
                     <script type="text/template">
-                        ## Ein Schritt zurück
+                        ## Fazit
 
-                        In der "alten" Welt haben wir unsere Software Stacks:
+                        Javascript auf dem Server ist
 
-                        * Apache, PHP, MySQL
-                        * Ruby, Rails, Unicorn
-                        * Java, JSP, Apache
-                        * Python, Django, Apache
-
-                        * nginx, varnish, squid
-
-                        Was macht Node.js?
-                    </script>
-                </section>
-
-                <section data-markdown>
-                    <script type="text/template">
-                        ## Node Packaged Modules
-
-                        npmjs.org verwaltet alle Module. Was PEAR, gem und pip leisten, vereint NPM
-
-                        ~ 45k und steigende Anzahl von Modulen
-                    </script>
-                </section>
-
-                <section data-markdown>
-                    <script type="text/template">
-                        ## Node Packaged Modules
-
-                        NodeJS API ist nicht stabil, keine Version 1.0 erreicht und für mindestens ein
-                        Jahr wird das auch so bleiben.
-                    </script>
-                </section>
-
-                <section data-markdown>
-                    <script type="text/template">
-                        ## Node Packaged Modules
-
-                        Das heißt: wir wollen Features aus der Node.js API, also müssen die Module die
-                        wir einsetzen mit der Node.js Entwicklung Schritt halten.
-                    </script>
-                </section>
-
-                <section data-markdown>
-                    <script type="text/template">
-                        ## Node Packaged Modules
-
-                        Das ist nicht immer so, nur bekannte, populäre Module schaffen das.
-
-                        Viele Module sind one man shows und schnell inkompatibel mit neuen Node.js
-                        Versionen.
+                        * performant,
+                        * schnell zu lernen,
+                        * die Zukunft (?)
 
                     </script>
                 </section>
